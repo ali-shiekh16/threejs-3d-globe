@@ -12,7 +12,10 @@ import {
   PointsMaterial,
   Points,
   Float32BufferAttribute,
+  Group,
 } from 'three';
+
+import gsap from 'gsap';
 
 import earthNormalMap from '/images/earth-normal-map.webp';
 import earthMap from '/images/earth.webp';
@@ -47,7 +50,7 @@ const material = new MeshStandardMaterial({
 });
 
 const sphere = new Mesh(geometry, material);
-scene.add(sphere);
+// scene.add(sphere);
 
 // * Stars
 const starGeometry = new BufferGeometry();
@@ -77,11 +80,30 @@ pointLight.position.set(3.3, 3.8, 3.6);
 const ambientLight = new AmbientLight(0xf2f2f2, 0.1);
 scene.add(pointLight, ambientLight);
 
+const group = new Group();
+group.add(sphere);
+scene.add(group);
+
+// * Mouse Interaction
+const mousePosition = { x: null, y: null };
+window.addEventListener('mousemove', ({ clientX, clientY }) => {
+  mousePosition.y = (clientY / innerHeight) * 2;
+  mousePosition.x = (clientX / innerWidth) * 2;
+  // mousePosition.x = clinetX;
+});
+
 // Animate
 function animate() {
   requestAnimationFrame(animate);
   sphere.rotateX(0.005);
   sphere.rotateY(0.005);
+
+  gsap.to(group.rotation, {
+    y: mousePosition.x,
+    x: mousePosition.y,
+    duration: 2,
+  });
+
   renderer.render(scene, camera);
 }
 
