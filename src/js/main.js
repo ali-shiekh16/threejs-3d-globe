@@ -1,4 +1,3 @@
-import { GUI } from 'dat.gui';
 import {
   Scene,
   PerspectiveCamera,
@@ -8,16 +7,14 @@ import {
   MeshStandardMaterial,
   TextureLoader,
   SphereGeometry,
-  MeshBasicMaterial,
   AmbientLight,
   BufferGeometry,
   PointsMaterial,
   Points,
   Float32BufferAttribute,
-  PointLightHelper,
 } from 'three';
 
-import earthNormalMap from '/images/earth-normal-map.png';
+import earthNormalMap from '/images/earth-normal-map.webp';
 import earthMap from '/images/earth.jpg';
 
 // Scene
