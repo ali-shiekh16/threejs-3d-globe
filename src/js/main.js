@@ -15,7 +15,7 @@ import {
 } from 'three';
 
 import earthNormalMap from '/images/earth-normal-map.webp';
-import earthMap from '/images/earth.jpg';
+import earthMap from '/images/earth.webp';
 
 // Scene
 const scene = new Scene();
